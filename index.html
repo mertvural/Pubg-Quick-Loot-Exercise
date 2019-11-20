@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pubg Quick Loot Exercise</title>       
+    <link rel="stylesheet" type="text/css" href="css/css.css" />
+</head>
+<body>
+    
+
+<div id="app" v-cloak>
+
+  <div id="bg"></div>
+  
+  <div id="result" class="tab" v-if="!result">
+      <span v-if="resultItem">you're not fast enough <a href="javascript:window.location.reload(true)" style="color:#fff;text-decoration:underline">Try Again.</a></span>
+      <span v-if="!resultItem">Vaooov You're too fast !</span>
+  </div>
+
+  <div class="tab" @click="enterTab = !enterTab" v-if="enterTab">
+      <span class="daktilo">
+          Click for loot...
+      </span>
+  </div>
+
+  <div id="counter" @click="counterStart" v-if="!enterTab">
+      <span v-if="durum">{{counter}}</span>
+      <span v-if="!durum">You have 3 seconds to loot - CLİCK START</span>
+  </div>
+
+  <div class="grid" v-if="lootArea">    
+    <h2>Ground</h2>    
+    <div v-drag-and-drop:options="options" class="drag-wrapper">
+      <ul class="grounds">
+       <li v-for="element in grounds" class="item">
+          <span class="img">
+            <img :src= element.imgSrc />
+          </span>
+          <span class="name">
+            {{element.name}}
+          </span>
+          <span class="piece">
+            {{element.piece}}
+          </span>
+       </li>
+      </ul>
+      <ul class="inTheBag">
+       <li v-for="(bagItem, index) in inTheBag" class="item">
+          <span class="img">
+            <img :src= bagItem.imgSrc />
+          </span>
+          <span class="name">
+            {{bagItem.name}}
+          </span>
+          <span class="piece">
+            {{bagItem.piece}}
+          </span>
+       </li>
+      </ul>
+      <div id="fillingBag">
+        <div class="fillingBag">
+          <img src="images/bag.png" alt="bag" />
+          <span id="fill" :style="{ 'height': allSize + '%' }"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+<script src="https://unpkg.com/vue-draggable@1.1.1/lib/vue-draggable.js"></script>
+<script src="js/js.js"></script>
+</body>
+</html>
